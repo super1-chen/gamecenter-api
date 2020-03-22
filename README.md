@@ -322,7 +322,7 @@ POST /v1/gamecenter/game_logs HTTP/1.1
 Content-Type: application/json
 
 {
-    "room_id": 1
+    "room_id": 1,
     "game_id": 1,
     "logs": "",
     "timestamp": 11313131
@@ -396,7 +396,7 @@ POST /v1/gamecenter/game_current_logs HTTP/1.1
 Content-Type: application/json
 
 {
-    "room_id": 1
+    "room_id": 1,
     "game_id": 1,
     "logs": "",
     "timestamp": 11313131
