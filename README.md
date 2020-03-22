@@ -17,8 +17,10 @@ HEAD | 获取某个对象的原信息，比如查看某个 token 是否合法。
 
 ## HTTP API 认证
 
-获取UID，之后所有的请求都应该带上一个header：`X-auth-token: $UID`。
-如果用户名密码错误则返回 HTTP 401。
+H5页面需要需要在有两个query string 
+
+1. uid表示用户id
+2. channel_id 表示渠道的id
 
 ## HTTP Error - 错误约定
 
@@ -29,7 +31,7 @@ Content-Type: application/json
 {
     "error": {
         "code": 400,
-        "message": "instance 'vm1' already existed."
+        "message": "ai"
     }
 }
 ```
@@ -83,7 +85,7 @@ Content-Type: application/json
 ## 获取用户信息
 
 ```http
-GET /v1/gamecenter/user_info HTTP/1.1
+GET /v1/gamecenter/user_info?uid=uid&channel_id=channel_id HTTP/1.1
 Content-Type: application/json
 ```
 
@@ -110,7 +112,7 @@ Content-Type: application/json
 ## 用户登出
 
 ```http
-GET /v1/gamecenter/user_logout HTTP/1.1
+GET /v1/gamecenter/user_logout?uid=uid&channel_id=channel_id HTTP/1.1
 Content-Type: application/json
 ```
 
@@ -123,6 +125,16 @@ Content-Type: application/json
     "data": "{}"
 }
 ```
+
+
+### Request Body
+
+| 参数| 说明|
+|-----|-----|
+| uid | 用户id|
+| channel_id | 渠道id|
+
+
 ### data 中的字段说明
 
 无
@@ -130,7 +142,7 @@ Content-Type: application/json
 ## 获取游戏列表
 
 ```http
-GET /v1/gamecenter/game_list HTTP/1.1
+GET /v1/gamecenter/game_list?uid=uid&channel_id=channel_id HTTP/1.1
 Content-Type: application/json
 ```
 
@@ -143,6 +155,14 @@ Content-Type: application/json
     "data": "[]"
 }
 ```
+
+
+### Request Body
+
+| 参数| 说明|
+|-----|-----|
+| uid | 用户id|
+| channel_id | 渠道id|
 
 ### data中的字段说明
 
@@ -159,7 +179,7 @@ Content-Type: application/json
 ## 获取游戏下的房间列表
 
 ```http
-GET /v1/gamecenter/room_list?game_id=13&page=1&per_page=10 HTTP/1.1
+GET /v1/gamecenter/room_list?game_id=13&uid=uid&channel_id=channel_id  HTTP/1.1
 Content-Type: application/json
 ```
 
@@ -172,13 +192,15 @@ Content-Type: application/json
     "data": "[]"
 }
 ```
+
 ### query string
 
 |参数|是否必填| 说明|
 |----|-----|----|
+| uid |是| 用户id|
+| channel_id |是| 渠道id|
 | game_id| 是| 游戏的id|
-|page| 否| 页码 默认1 |
-|per_page| 否| 页码 默认10 |
+
 
 ### data中的字段说明
 
@@ -196,11 +218,12 @@ Content-Type: application/json
 ## 创建游戏房间
 
 ```http
-POST /v1/gamecenter/room HTTP/1.1
+POST /v1/gamecenter/room&uid=uid&channel_id=channel_id  HTTP/1.1
 Content-Type: application/json
 
 {
     "game_id" : 1
+    "people": 4
 }
 
 ```
@@ -211,15 +234,23 @@ Content-Type: application/json
 
 {
     "code": 200,
-    "data": "{}"
+    "data": "{}"  
 }
 ```
+
+### Query String
+
+|参数|是否必填|说明|
+|-----|-----|----|
+| uid |是| 用户id|
+| channel_id |是| 渠道id|
 
 ### Request Body
 
 |参数|是否必填|说明|
 |-----|-----|----|
 |game_id| 是| 游戏的id|
+|people|是||
 
 ### data 说明
 
@@ -235,7 +266,7 @@ Content-Type: application/json
 ## 游戏房间详情
 
 ```http
-GET /v1/gamecenter/room/<game_id>/<room_id> HTTP/1.1
+GET /v1/gamecenter/room/<game_id>/<room_id>?uid=uid&channel_id=channel_id HTTP/1.1
 Content-Type: application/json
 ```
 
@@ -256,6 +287,13 @@ Content-Type: application/json
 |game_id| 游戏的id|
 |room_id| 房间id|
 
+### Request Body
+
+|参数|是否必填|说明|
+|-----|-----|----|
+| uid |是| 用户id|
+| channel_id |是| 渠道id|
+
 ### data 说明
 
 |参数|说明|
@@ -272,7 +310,7 @@ Content-Type: application/json
 > 加入
 
 ```http
-POST /v1/gamecenter/join_room HTTP/1.1 
+POST /v1/gamecenter/join_room?uid=uid&channel_id=channel_id HTTP/1.1 
 Content-Type: application/json
 
 {
@@ -285,7 +323,7 @@ Content-Type: application/json
 
 
 ```http
-POST /v1/gamecenter/view_room HTTP/1.1 
+POST /v1/gamecenter/view_room?uid=uid&channel_id=channel_id HTTP/1.1 
 Content-Type: application/json
 
 {
@@ -304,12 +342,26 @@ Content-Type: application/json
 }
 ```
 
-### Request Body
+### URL paramter
 
 |参数|说明|
 |-----|-----|
 | room_id| 房间号|
 | game_id| 游戏id|
+
+
+### Request Body
+
+|参数|是否必填|说明|
+|-----|-----|----|
+| uid |是| 用户id|
+| channel_id |是| 渠道id|
+### Request Body
+
+|参数|是否必填|说明|
+|-----|-----|----|
+| uid |是| 用户id|
+| channel_id |是| 渠道id|
 
 ### data说明
 
