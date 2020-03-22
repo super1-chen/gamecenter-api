@@ -1,6 +1,6 @@
 # 游戏中心
 
-本文档主要讲述了游戏中心的信息信息
+本文档主要讲述了游戏中心的信息
 
 ## HTTP 方法说明
 
@@ -36,20 +36,49 @@ Content-Type: application/json
 
 ## HTTP Success - 成功接口约定
 
+> 列表类型数据
+
+
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "code": 200
+    "code": 200,
+    "data": "[]"
+}
+```
+
+> 对象类型数据
+
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "code": 200,
+    "data": "{}"
+}
+```
+
+> 可以忽略的data直接使用是空字符串
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "code": 200,
     "data": ""
 }
 ```
 
+
 ### 说明
 
 1. code只会是200，表明成功
-2. data 是一个json.dumps 之后的字符串，游戏段自信解析
+2. data 是一个json.dumps 之后的字符串，游戏段自行解析
 
 ## 获取用户信息
 
