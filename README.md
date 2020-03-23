@@ -126,8 +126,7 @@ Content-Type: application/json
 }
 ```
 
-
-### Request Body
+### Query String
 
 | 参数| 说明|
 |-----|-----|
@@ -212,13 +211,14 @@ Content-Type: application/json
 | name | 房间名称|
 | participators| 参与者人数|
 | viewers| 观战人数 |
+| people| 可以参与的人数|
 | status| 0 等待, 1 开始|
 
 
 ## 创建游戏房间
 
 ```http
-POST /v1/gamecenter/room&uid=uid&channel_id=channel_id  HTTP/1.1
+POST /v1/gamecenter/room?uid=uid&channel_id=channel_id  HTTP/1.1
 Content-Type: application/json
 
 {
@@ -250,7 +250,7 @@ Content-Type: application/json
 |参数|是否必填|说明|
 |-----|-----|----|
 |game_id| 是| 游戏的id|
-|people|是||
+|people|是| 可以参与的人数|
 
 ### data 说明
 
@@ -266,7 +266,7 @@ Content-Type: application/json
 ## 游戏房间详情
 
 ```http
-GET /v1/gamecenter/room/<game_id>/<room_id>?uid=uid&channel_id=channel_id HTTP/1.1
+GET /v1/gamecenter/room/<room_id>?uid=uid&channel_id=channel_id HTTP/1.1
 Content-Type: application/json
 ```
 
@@ -303,6 +303,7 @@ Content-Type: application/json
 | participators| 参与者人数|
 | viewers| 观战人数 |
 | status| 0 等待, 1 开始|
+| people| 可以参与的人数|
 
 
 ## 观看加入游戏房间
@@ -314,8 +315,7 @@ POST /v1/gamecenter/join_room?uid=uid&channel_id=channel_id HTTP/1.1
 Content-Type: application/json
 
 {
-    "room_id": 1,
-    "game_id": 1
+    "room_id": 1
 }
 ```
 
@@ -327,8 +327,7 @@ POST /v1/gamecenter/view_room?uid=uid&channel_id=channel_id HTTP/1.1
 Content-Type: application/json
 
 {
-    "room_id": 1,
-    "game_id": 1
+    "room_id": 1
 }
 ```
 
@@ -347,7 +346,6 @@ Content-Type: application/json
 |参数|说明|
 |-----|-----|
 | room_id| 房间号|
-| game_id| 游戏id|
 
 
 ### Request Body
@@ -356,12 +354,61 @@ Content-Type: application/json
 |-----|-----|----|
 | uid |是| 用户id|
 | channel_id |是| 渠道id|
+
+
+### data说明
+
+无
+
+
+## 退出和关闭房间
+
+> 退出
+
+```http
+POST /v1/gamecenter/quit_room?uid=uid&channel_id=channel_id HTTP/1.1 
+Content-Type: application/json
+
+{
+    "room_id": 1
+}
+```
+
+> 关闭
+
+```http
+POST /v1/gamecenter/close_room?uid=uid&channel_id=channel_id HTTP/1.1 
+Content-Type: application/json
+
+{
+    "room_id": 1
+}
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "code": 200,
+    "data": "{}"
+}
+```
+
+### URL paramter
+
+|参数|说明|
+|-----|-----|
+| room_id| 房间号|
+
+
 ### Request Body
 
 |参数|是否必填|说明|
 |-----|-----|----|
 | uid |是| 用户id|
 | channel_id |是| 渠道id|
+
 
 ### data说明
 
@@ -370,7 +417,7 @@ Content-Type: application/json
 ## 游戏日志存储
 
 ```http
-POST /v1/gamecenter/game_logs HTTP/1.1 
+POST /v1/gamecenter/game_logs?uid=uid&channel_id=channel_id HTTP/1.1 
 Content-Type: application/json
 
 {
@@ -398,7 +445,7 @@ Content-Type: application/json
 |参数|说明|
 |-----|-----|
 | room_id| 房间号|
-| game_id| 游戏id|
+| game_id| 游戏的id|
 | timestamp| 时间戳|
 | logs| 游戏端口随意写 |
 
@@ -406,7 +453,7 @@ Content-Type: application/json
 ## 游戏日志获取
 
 ```http
-GET /v1/gamecenter/game_logs?room_id=1&game_id=1&start=13131313131&end=131313131 HTTP/1.1 
+GET /v1/gamecenter/game_logs?room_id=1&start=13131313131&end=131313131&uid=uid&channel_id=channel_id HTTP/1.1 
 Content-Type: application/json
 ```
 
@@ -425,7 +472,6 @@ Content-Type: application/json
 |参数|说明|
 |-----|-----|
 | room_id| 房间号|
-| game_id| 游戏id|
 | start| 开始时间戳|
 | end| 截止时间戳|
 
@@ -444,12 +490,11 @@ data 是一个字典列表，包含
 
 
 ```http
-POST /v1/gamecenter/game_current_logs HTTP/1.1 
+POST /v1/gamecenter/game_current_logs&uid=uid&channel_id=channel_id HTTP/1.1 
 Content-Type: application/json
 
 {
     "room_id": 1,
-    "game_id": 1,
     "logs": "",
     "timestamp": 11313131
 }
@@ -472,7 +517,6 @@ Content-Type: application/json
 |参数|说明|
 |-----|-----|
 | room_id| 房间号|
-| game_id| 游戏id|
 | timestamp| 时间戳|
 | logs| 游戏端口随意写 |
 
@@ -480,7 +524,7 @@ Content-Type: application/json
 ## 实时数据获取
 
 ```http
-GET /v1/gamecenter/game_current_logs?room_id=1&game_id=1&start=13131313131&end=131313131 HTTP/1.1 
+GET /v1/gamecenter/game_current_logs?room_id=1&start=13131313131&end=131313131 HTTP/1.1 
 Content-Type: application/json
 
 ```
