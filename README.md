@@ -222,7 +222,7 @@ POST /v1/gamecenter/room?uid=uid&channel_id=channel_id  HTTP/1.1
 Content-Type: application/json
 
 {
-    "game_id" : 1
+    "game_id" : 1,
     "people": 4
 }
 
@@ -490,11 +490,12 @@ data 是一个字典列表，包含
 
 
 ```http
-POST /v1/gamecenter/game_current_logs&uid=uid&channel_id=channel_id HTTP/1.1 
+POST /v1/gamecenter/game_current_logs?uid=uid&channel_id=channel_id HTTP/1.1 
 Content-Type: application/json
 
 {
     "room_id": 1,
+    "game_id": 1,
     "logs": "",
     "timestamp": 11313131
 }
@@ -517,6 +518,7 @@ Content-Type: application/json
 |参数|说明|
 |-----|-----|
 | room_id| 房间号|
+| game_id| 游戏id|
 | timestamp| 时间戳|
 | logs| 游戏端口随意写 |
 
