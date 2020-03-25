@@ -210,7 +210,6 @@ Content-Type: application/json
 | id| 房间id|
 | name | 房间名称|
 | participators| 参与者人数|
-| viewers| 观战人数 |
 | people| 可以参与的人数|
 | status| 0 等待, 1 开始|
 
@@ -259,14 +258,22 @@ Content-Type: application/json
 | id| 房间id|
 | name | 房间名称|
 | participators| 参与者人数|
-| viewers| 观战人数 |
 | status| 0 等待, 1 开始|
 
 
-## 游戏房间详情
+## 房间详情和删除
+
+> 查看房间详情
 
 ```http
 GET /v1/gamecenter/room/<room_id>?uid=uid&channel_id=channel_id HTTP/1.1
+Content-Type: application/json
+```
+
+> 删除房间
+
+```http
+DELETE /v1/gamecenter/room/<room_id>?uid=uid&channel_id=channel_id HTTP/1.1 
 Content-Type: application/json
 ```
 
@@ -301,12 +308,11 @@ Content-Type: application/json
 | id| 房间id|
 | name | 房间名称|
 | participators| 参与者人数|
-| viewers| 观战人数 |
 | status| 0 等待, 1 开始|
 | people| 可以参与的人数|
 
 
-## 观看加入游戏房间
+## 加入游戏房间
 
 > 加入
 
@@ -319,18 +325,6 @@ Content-Type: application/json
 }
 ```
 
-> 观看
-
-
-```http
-POST /v1/gamecenter/view_room?uid=uid&channel_id=channel_id HTTP/1.1 
-Content-Type: application/json
-
-{
-    "room_id": 1
-}
-```
-
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
@@ -361,7 +355,7 @@ Content-Type: application/json
 无
 
 
-## 退出和关闭房间
+## 退出房间
 
 > 退出
 
@@ -374,17 +368,6 @@ Content-Type: application/json
 }
 ```
 
-> 关闭
-
-```http
-POST /v1/gamecenter/close_room?uid=uid&channel_id=channel_id HTTP/1.1 
-Content-Type: application/json
-
-{
-    "room_id": 1
-}
-```
-
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
@@ -413,6 +396,44 @@ Content-Type: application/json
 ### data说明
 
 无
+
+## 开始和结束游戏
+
+> 开始游戏
+
+```http
+POST /v1/gamecenter/game_start?uid=uid&channel_id=channel_id HTTP/1.1 
+Content-Type: application/json
+
+{
+    "room_id": 1
+}
+```
+
+> 结束游戏
+
+```http
+POST /v1/gamecenter/game_over?uid=uid&channel_id=channel_id HTTP/1.1 
+Content-Type: application/json
+
+{
+    "room_id": 1
+}
+```
+
+### Request Body
+
+
+|参数|说明|
+|-----|-----|
+| room_id| 房间号|
+
+
+### data说明
+
+无
+
+
 
 ## 游戏日志存储
 
