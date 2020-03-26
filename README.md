@@ -60,7 +60,7 @@ Content-Type: application/json
 
 {
     "code": 200,
-    "api_name": "api_name"
+    "api_name": "api_name",
     "data": "{}"
 }
 ```
@@ -73,7 +73,7 @@ Content-Type: application/json
 
 {
     "code": 200,
-    "api_name": "api_name"
+    "api_name": "api_name",
     "data": ""
 }
 ```
