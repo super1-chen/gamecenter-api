@@ -156,7 +156,7 @@ Content-Type: application/json
 {
     "code": 200,
     "api_name": "get_game_list",
-    "data": "[]"
+    "data": "{"game_list": []}"
 }
 ```
 
@@ -170,7 +170,7 @@ Content-Type: application/json
 
 ### data中的字段说明
 
-1. data 经过解析之后是一个列表，包含了游戏的信息
+1. data\[game_list\] 经过解析之后是一个列表，包含了游戏的信息
 
 |参数|说明|
 |-------|------|
@@ -194,7 +194,7 @@ Content-Type: application/json
 {
     "code": 200,
     "api_name": "get_room_list",
-    "data": "[]"
+    "data": "{"room_list":[]}"
 }
 ```
 
@@ -209,7 +209,7 @@ Content-Type: application/json
 
 ### data中的字段说明
 
-1. data 经过解析之后是一个列表，包含了游戏的信息
+1. data\["room_list"\] 经过解析之后是一个列表，包含了游戏的信息
 
 |参数|说明|
 |-------|------|
@@ -531,7 +531,7 @@ Content-Type: application/json
 {
     "code": 200,
     "api_name": "get_game_logs",
-    "data": "[]"
+    "data": "{"logs"[]}"
 }
 ```
 
@@ -550,8 +550,11 @@ data 是一个字典列表，包含
 
 |参数|说明|
 |-------|------|
-| timestamp| 时间戳|
-| logs| 游戏端口随意写的返回值 |
+| logs\[timestamp\]| 时间戳|
+| logs\[logs\]| 游戏端口随意写的返回值 |
+| logs\[timestamp\]| 时间戳 |
+| logs\[uid\]| 用户|
+| logs\[channel_id\]| 渠道号 |
 
 
 ## 实时数据更新
