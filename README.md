@@ -60,6 +60,7 @@ Content-Type: application/json
 
 {
     "code": 200,
+    "api_name": "api_name"
     "data": "{}"
 }
 ```
@@ -72,6 +73,7 @@ Content-Type: application/json
 
 {
     "code": 200,
+    "api_name": "api_name"
     "data": ""
 }
 ```
@@ -95,6 +97,7 @@ Content-Type: application/json
 
 {
     "code": 200,
+    "api_name": "get_user_info",
     "data": "{}"
 }
 ```
@@ -122,6 +125,7 @@ Content-Type: application/json
 
 {
     "code": 200,
+    "api_name": "user_logout",
     "data": "{}"
 }
 ```
@@ -151,6 +155,7 @@ Content-Type: application/json
 
 {
     "code": 200,
+    "api_name": "get_game_list",
     "data": "[]"
 }
 ```
@@ -188,6 +193,7 @@ Content-Type: application/json
 
 {
     "code": 200,
+    "api_name": "get_room_list",
     "data": "[]"
 }
 ```
@@ -233,6 +239,7 @@ Content-Type: application/json
 
 {
     "code": 200,
+    "api_name": "create_room",
     "data": "{}"  
 }
 ```
@@ -270,6 +277,17 @@ GET /v1/gamecenter/room/<room_id>?uid=uid&channel_id=channel_id HTTP/1.1
 Content-Type: application/json
 ```
 
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "code": 200,
+    "api_name": "get_room",
+    "data": "{}"
+}
+```
+
 > 删除房间
 
 ```http
@@ -283,9 +301,11 @@ Content-Type: application/json
 
 {
     "code": 200,
+    "api_name": "delete_room",
     "data": "{}"
 }
 ```
+
 
 ### URL Parameter
 
@@ -331,6 +351,7 @@ Content-Type: application/json
 
 {
     "code": 200,
+    "api_name": "join_game",
     "data": "{}"
 }
 ```
@@ -374,6 +395,7 @@ Content-Type: application/json
 
 {
     "code": 200,
+    "api_name": "quit_game",
     "data": "{}"
 }
 ```
@@ -410,6 +432,18 @@ Content-Type: application/json
 }
 ```
 
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "code": 200,
+    "api_name": "game_start",
+    "data": "{}"
+}
+```
+
 > 结束游戏
 
 ```http
@@ -418,6 +452,17 @@ Content-Type: application/json
 
 {
     "room_id": 1
+}
+```
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "code": 200,
+    "api_name": "game_over",
+    "data": "{}"
 }
 ```
 
@@ -456,6 +501,7 @@ Content-Type: application/json
 
 {
     "code": 200,
+    "api_name": "post_game_logs",
     "data": "{}"
 }
 ```
@@ -484,6 +530,7 @@ Content-Type: application/json
 
 {
     "code": 200,
+    "api_name": "get_game_logs",
     "data": "[]"
 }
 ```
@@ -529,6 +576,7 @@ Content-Type: application/json
 
 {
     "code": 200,
+    "api_name": "post_current_game_logs",
     "data": "{}"
 }
 ```
@@ -559,6 +607,7 @@ Content-Type: application/json
 
 {
     "code": 200,
+    "api_name": "get_current_game_logs",
     "data": "{}"
 }
 ```
