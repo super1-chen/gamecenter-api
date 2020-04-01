@@ -156,7 +156,7 @@ Content-Type: application/json
 {
     "code": 200,
     "api_name": "get_game_list",
-    "data": "{"game_list": []}"
+    "data": "{\"game_list\": []}"
 }
 ```
 
@@ -194,7 +194,7 @@ Content-Type: application/json
 {
     "code": 200,
     "api_name": "get_room_list",
-    "data": "{"room_list":[]}"
+    "data": "{\"room_list\":[]}"
 }
 ```
 
