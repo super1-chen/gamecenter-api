@@ -440,9 +440,16 @@ Content-Type: application/json
 {
     "code": 200,
     "api_name": "game_start",
-    "data": "{}"
+    "data": "{\"int\": 2}"
 }
 ```
+
+### data说明
+
+|参数|说明|
+|-----|----|
+| int| 固定值2|
+
 
 > 结束游戏
 
