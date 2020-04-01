@@ -538,7 +538,7 @@ Content-Type: application/json
 {
     "code": 200,
     "api_name": "get_game_logs",
-    "data": "{"logs"[]}"
+    "data": "{\"logs\":[]}"
 }
 ```
 
