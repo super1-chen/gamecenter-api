@@ -214,10 +214,11 @@ Content-Type: application/json
 |参数|说明|
 |-------|------|
 | id| 房间id|
-| name | 房间名称|
+| status| 0 等待, 1 开始|
+| start_time | 开始时间|
 | participators| 参与者人数|
 | people| 可以参与的人数|
-| status| 0 等待, 1 开始|
+
 
 
 ## 创建游戏房间
