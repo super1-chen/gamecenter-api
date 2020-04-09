@@ -498,7 +498,8 @@ Content-Type: application/json
     "room_id": 1,
     "game_id": 1,
     "logs": "",
-    "timestamp": 11313131
+    "timestamp": 11313131,
+    "player_id": 1
 }
 ```
 
@@ -522,6 +523,7 @@ Content-Type: application/json
 | room_id| 房间号|
 | game_id| 游戏的id|
 | timestamp| 时间戳|
+| player_id| 当前玩游戏人的编号|
 | logs| 游戏端口随意写 |
 
 
@@ -563,6 +565,7 @@ data 是一个字典列表，包含
 | logs\[timestamp\]| 时间戳 |
 | logs\[uid\]| 用户|
 | logs\[channel_id\]| 渠道号 |
+| logs\[player_id\]| 当前的游戏玩家的id |
 
 
 ## 实时数据更新
@@ -576,7 +579,8 @@ Content-Type: application/json
     "room_id": 1,
     "game_id": 1,
     "logs": "",
-    "timestamp": 11313131
+    "timestamp": 11313131,
+    "player_id": 1
 }
 ```
 
@@ -600,6 +604,7 @@ Content-Type: application/json
 | room_id| 房间号|
 | game_id| 游戏id|
 | timestamp| 时间戳|
+| player_id| 当前玩游戏人的编号|
 | logs| 游戏端口随意写 |
 
 
@@ -631,3 +636,4 @@ data，包含
 |-------|------|
 | timestamp| 时间戳|
 | logs| 游戏端口随意写的返回值|
+| player_id| 当前玩游戏人的编号|
